@@ -1,5 +1,7 @@
 Here is the code for the PASS Human Protein Targets, which is a freely available web version of the PASS Targets [1] based on the PASS software [2] and ChEMBL data [3].
 
+The code is distributed under MIT license, ChEMBL data have another license, https://creativecommons.org/licenses/by-sa/3.0/
+
 PASS Targets is being developed in the framework of the Russian Academy of Science Basic Research program for 2020-2030; the procedure to create training sets is being developed with the support from RSF.
 Current version of the procedure mainly use R language [4] and Tidyverse libraries [5] to process the data.
 
