@@ -54,7 +54,7 @@ assays__query <- dbSendQuery(con, str_glue('SELECT a.tid, a.assay_id as aid, a.c
                                         FROM assays as a
                                         WHERE a.tid IN ({tids_1})'))
 # Execute main query
-assays__result <- dbFetch(assays__query)
+assays__result <- dbFetch(assays__query) |> mutate(description = str_replace_all(description, "\t", " "))
 dbClearResult(assays__query)
 # prepare bao query
 bao__query <- dbSendQuery(con, 'SELECT bao_id, label FROM bioassay_ontology')
