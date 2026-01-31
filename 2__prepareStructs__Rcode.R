@@ -48,7 +48,7 @@ structs <- structs__result |> distinct() |>
 # Export CSs
 write_lines(str_c("", structs[[1]]), "C:/.../structs_raw.SDF")
 
-## Read the CSs along with the MNA descriptors computed externally, any other descriptors, ordered and written as the string, could be used instead.
+## Read the CSs along with the MNA [Filimonov, Dmitrii, et al. "Chemical similarity assessment through multilevel neighborhoods of atoms: definition and comparison with the other descriptors." Journal of chemical information and computer sciences 39.4 (1999): 666-670.] descriptors computed externally, any other descriptors, ordered and written as the string, could be used instead.
 structs_described <- read_file("C:/.../structs_raw_SD.SDF") |> as_tibble()
 
 ## Gather based on MNA
