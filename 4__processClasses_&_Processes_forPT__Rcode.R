@@ -87,3 +87,4 @@ targets_h_described <- targets_hc |> left_join(targets_hp)
 
 ### Export the results
 write_tsv(targets_h_described, "C:/.../targets_h_described.tsv")
+dbDisconnect(con)
