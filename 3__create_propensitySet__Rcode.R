@@ -4,11 +4,19 @@ library(tidyverse)
 targets 	<- read_tsv("C:/.../targets.tsv", guess_max = 900000) |> select(tid, target_id) |> distinct()
 assays 		<- read_tsv("C:/.../assays.tsv", guess_max = 900000)
 activities 	<- read_tsv("C:/.../activities_upd.tsv", guess_max = 900000)
-structs 	<- read_tsv("C:/.../structs.tsv", guess_max = 900000) |> mutate(molfile = str_replace_all(molfile, "\n\r\n", "\r\n"))
+structs 	<- read_tsv("C:/.../structs.tsv", guess_max = 900000) |> mutate(molfile = str_trim(molfile)) |>
+																	   mutate(molfile = case_when(
+																	   		str_match(molfile, regex(".*V2000", dotall = TRUE)) |> str_count("\n") == 3 ~ molfile,
+				  															str_match(molfile, regex(".*V2000", dotall = TRUE)) |> str_count("\n") == 2 ~ str_c("\r\n", molfile, sep = ""),
+				  															str_match(molfile, regex(".*V2000", dotall = TRUE)) |> str_count("\n") == 1 ~ str_c("\r\n\r\n", molfile, sep = ""),
+				  															str_match(molfile, regex(".*V2000", dotall = TRUE)) |> str_count("\n") == 0 ~ str_c("\r\n\r\n\r\n", molfile, sep = ""),
+				  															.default = molfile
+																	   	))
 
 # Join the datasets
 data <- targets |> inner_join(assays) |> inner_join(activities) |> inner_join(structs, by = c("molregno" = "id"))
-data_prop <- data |> select(molfile, target_id, molregno, all_chembl_ids) |> distinct() |>
+data_prop <- data |> select(molfile, tid, molregno, all_chembl_ids) |> distinct() |>
+						mutate(target_id = str_c("target_", tid, sep = "")) |>
 						group_by(molregno) |>
 						mutate(activity = str_c(target_id, collapse = "\r\n")) |>
 						slice_head(n = 1) |>

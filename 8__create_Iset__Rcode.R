@@ -19,8 +19,8 @@ library(tidyverse)
 
 
 ### Import the data
-targets 	<- read_tsv("C:/.../targets_h_m_d.tsv", guess_max = 900000) |> mutate(tid = as.character(tid))
-assays 		<- read_tsv("C:/.../assays_h_m_d.tsv", guess_max = 900000) |> mutate(tid = as.character(tid))
+targets 	<- read_tsv("C:/.../targets_h_m_i.tsv", guess_max = 900000) |> mutate(tid = as.character(tid))
+assays 		<- read_tsv("C:/.../assays_h_m_i.tsv", guess_max = 900000) |> mutate(tid = as.character(tid))
 activities 	<- read_tsv("C:/.../activities_upd.tsv", guess_max = 900000)
 structs 	<- read_tsv("C:/.../structs.tsv") |> mutate(molfile = str_trim(molfile)) |>
 																	   mutate(molfile = case_when(
@@ -90,4 +90,4 @@ sdf <- structs |> select(-mna) |> inner_join(actives, by = c("id" = "molregno"))
                               unite("record", molfile:end_rec, sep = "")
 
 ### Export the Direct dataset
-write_lines(sdf[[1]], "C:/.../PT_36_d.SDF", sep = "\r\n")
+write_lines(sdf[[1]], "C:/.../PT_36_i.SDF", sep = "\r\n")
