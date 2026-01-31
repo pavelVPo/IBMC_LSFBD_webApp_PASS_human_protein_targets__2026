@@ -11,7 +11,7 @@ library(tidyverse)
 
 ### Import the data
 targets 	<- read_tsv("C:/.../targets_h_m_described.tsv", guess_max = 900000) |> mutate(tid = as.character(tid))
-assays 		<- read_tsv("C:/.../assays.tsv", guess_max = 900000) |> mutate(tid = as.character(tid))
+assays 		<- read_tsv("C:/.../assays_h_m.tsv", guess_max = 900000) |> mutate(tid = as.character(tid))
 # What do we have here?
 # target type -> only CHIMERIC PROTEIN and SINGLE PROTEIN are good for D
 # assay type  -> both B and F are good for D

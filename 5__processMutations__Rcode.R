@@ -47,7 +47,7 @@ targets_m_only <- targets |> inner_join(tid_m) |>
 targets_m <- bind_rows(targets |> mutate(tid = as.character(tid)), targets_m_only)
 # Introduce mutations' designations to the tids in assays
 assays_m <- assays_m |> rowwise() |>
-						mutate(tid = str_c(tid, mutation, sep = "_")) |>
+						mutate(tid = if_else(!is.na(mutation), str_c(tid, mutation, sep = "_"), as.character(tid))) |>
 						ungroup()
 
 ### Export the results
