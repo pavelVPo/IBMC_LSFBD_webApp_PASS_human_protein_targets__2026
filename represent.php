@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Probable protein targets</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<!-- outer CSS and JS -->
+	<link href="css/index_style.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="js/table.js"></script>
+</head>
+
+
+<body>
+<div class="wrapper">
+
+	<nav class="menu">
+		<div class="download_btn"><div class="spacer" id="spacer_1"></div><div class="spacer" id="spacer_1"></div><button id="dwnld_btn" autofocus>Download</button></div>
+		<ul>
+			<!-- SEE:
+			https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Schemes/javascript
+			https://developer.mozilla.org/ru/docs/Web/HTML/Reference/Elements/dialog -->
+			<li class="navli_right"><a id="open_contact" href="javascript:open_contact()">Contact</a></li>
+			<li class="navli_right"><a id="open_interp" href="javascript:open_interp()">Interpretation</a></li>
+			<li class="navli_right"><a id="open_about" href="javascript:open_about()">About</a></li>
+		</ul>
+	</nav>
+
+	<main>
+		<div class="container" id="main_container_result">
+			<div class="spacer" id="spacer_1"> <p></p> </div>
+			<div id="container_appicability">
+				<p id="procs">3 biological processes associated with probable targets:</p>
+					<p id="proc_one"></p>
+					<p id="proc_two"></p>
+					<p id="proc_three"></p>
+				<p id="classes">3 protein classes of probable targets:</p>
+					<p id="class_one"></p>
+					<p id="class_two"></p>
+					<p id="class_three"></p>
+			</div>
+			<div class="spacer" id="spacer_rslt_1"> <p></p> </div>
+			<div id="container_svg">
+			</div> 
+			<!-- table with the results -->
+			<div id="container_table" style="height: 50vh; overflow-y: scroll;">
+			<table id="table_data" class="display wrap" style="width:100%">
+				<thead>
+         			<tr>
+           			<th>Name</th>
+            		<th>Activity Score</th>
+            		<th>Propensity Score</th>
+            		<th>Type of Interaction</th>
+            		<th>ChEMBL ID</th>
+          			</tr>
+        		</thead>
+        		<tbody id="table_data_body">
+        		</tbody>
+			</table>
+			</div>
+			<div id="container_download">
+			</div>
+			<div class="spacer" id="spacer_rslt_btm"> <p></p> </div>	
+		</div>
+	</main>
+
+	<footer>
+		<p class="text" id="footer_txt">Way2Drug &#169 2011 - <script type="text/javascript">document.write(new Date().getFullYear());</script> | 
+			<a href="http://way2drug.com/prpol.php" target="_blank">Privacy Policy </a>
+			The work was performed in the framework of the Russian Academy of Science Basic Research program for 2020-2030.
+		</p>
+	</footer>
+	
+</div>
+</body>
+
+
+<dialog class="dlg_off" id="about_dlg">
+	<header class="dlg_header"><h2>About</h2></header>
+	<div class="dlg_div">
+		<div class="dlg_txt">
+			  <p ALIGN=JUSTIFY style="font-weight: bold;">The chemical structure must fullfil the following requirements:</p>
+			  <p ALIGN=JUSTIFY>• Structure should be uncharged or charges should be balanced</p>
+			  <p ALIGN=JUSTIFY>• Only single, double and triple bonds are allowed</p>
+			  <p ALIGN=JUSTIFY>• Structure should contain at least 3 carbon atoms</p>
+			  <p ALIGN=JUSTIFY>• Structure should contain only one component, single atoms are not considered</p>
+			  <p ALIGN=JUSTIFY>• Absolute molecular weight should exceed 1250</p>
+				<p></p>
+				<p ALIGN=JUSTIFY style="font-weight: bold;">General information:</p>
+				<p ALIGN=JUSTIFY>Proteins of the human body constitute large and important subset of the therapeutic targets, here is the tool to predict human protein targets, which could be affected by the given chemical structure, freely available version of the PASS Targets [1]:</p>
+				<p>• Chemical and biological data were extracted from ChEMBL v36 [2].</p>
+		    <p>• Using these data classifiers were build using PASS software [3].</p>
+		    <p>• In addition to the PASS prediction, summary of the protein classes (as defined in ChEMBL) and GO-terms (slim version) [4] describing biological processes are provided to the users.</p>
+		    <p ALIGN=JUSTIFY>Ongoing update from february 2026:  RDKit.JS is now used for the intial chemical structure processing [5] instead of the MarvinJS (https://chemaxon.com/). Also, the code is available via GitHub:</p>
+		  	<p>https://github.com/pavelVPo/IBMC_LSFBD_webApp_PASS_human_protein_targets__2026</p>
+    	</div>
+	    <div class="dlg_ref">
+	    	<p ALIGN=LEFT>References:
+1. Pogodin, P. V., et al. (2015), PASS Targets: Ligand-based multi-target computational system based on a public data and naïve Bayes approach. SAR and QSAR in Environmental Research, 26(10), 783-793.
+2. Filimonov, D. A., et al. (2014). Prediction of the biological activity spectra of organic compounds using the PASS online web resource. Chemistry of Heterocyclic Compounds, 50(3), 444-457.
+3. Gaulton, A., et al. (2016), The ChEMBL database in 2017. Nucleic acids research, 45(D1), D945-D954.
+4. Mutowo, Prudence, et al. "A drug target slim: using gene ontology and gene ontology annotations to navigate protein-ligand target space in ChEMBL." Journal of biomedical semantics 7.1 (2016): 59.
+5. Landrum, G. (2013). Rdkit documentation. Release, 1(1-79), 4.</p>
+			</div>
+		</div>
+  <div id="btn_close_about" class="dlg_btn"><button autofocus>Close</button></div>
+</dialog>
+<dialog class="dlg_off" id="interp_dlg">
+	<header class="dlg_header"><h2>Interpretation</h2></header>
+	<div class="dlg_div">
+		<div class="dlg_txt">
+			<p ALIGN=JUSTIFY>This app allows user to predict interaction with the human protein targets. The scores for each compound is expressed as a difference between probabilities for chemical compound to interact and to not to interact with the particular protein target, which are computed using PASS software based on the data from ChEMBL.</p>
+			<p ALIGN=JUSTIFY>Only protein targets with Pa > Pi (score > 0) are considered as possible for a particular compound and provided to the user.</p>
+			<p ALIGN=JUSTIFY>The higher the scores, the higher the chances for the compound to be found active in the experiment against this particular protein.</p>
+			<p ALIGN=JUSTIFY>I.e., interpretation of the results is quite simple: the higher the scores - the higher the chances for the compound to be found active in the experiment. 
+        Detailed explanation of how to interpet the results of PASS is given in <a href="http://bmc-rm.org/index.php/bmcrm/article/view/4" target="_blank">this</a> publication</p>
+		</div>
+	</div>
+  <div id="btn_close_interp" class="dlg_btn"><button autofocus>Close</button></div>
+</dialog>
+<dialog class="dlg_off" id="contact_dlg">
+	<header class="dlg_header"><h2>Contacts</h2></header>
+	<div class="dlg_div">
+		<div class="dlg_txt">
+			<p>Laboratory for Structure-Function Based Drug Design, Department for Bioinformatics, Institute of Biomedical Chemistry (IBMC) Pogodinskaya Str. 10, Moscow, Russia, 119121</p>
+        <p>	------------------------------	</p>
+        <p>• Way2Drug Team Tel:  +7 499 246-09-20 Fax: +7 499 245-08-57  E-mail: pass@ibmc.msk.ru</p>
+        <p>• pogodinpv@ibmc.msk.ru</p>
+        <p>• pogodinpv@gmail.com</p>
+		</div>
+	</div>
+  <div id="btn_close_contact" class="dlg_btn"><button autofocus>Close</button></div>
+</dialog>
+<dialog class="dlg_off" id="draw_dlg">
+	<header class="dlg_header"><h3>Please, use the chemical editor of your choice to draw and prepare the chemical structure for prediction</h3></header>
+	<div class="dlg_div">
+		<p>Dedicated software of users' choice for chemical drawing is the way to not to restrict the users' choice and to allow them to comply with their own requirements.</p>
+		<p>One of the web tools having free base functionality for the researchers from academia is MolView, <a href="https://molview.org/" target="_blank">https://molview.org/</a></p>
+		<p>For the details on licensing of the current version of the MolView, please SEE: https://molview.com/subscriptions/</p>
+		<p>To use it:
+			<ul>
+				<li><a>go to https://molview.org/</a></li>
+				<li><a>click "Continue to old app"</a></li>
+				<li><a>draw the chemical structure</a></li>
+				<li><a>go to Tools, click MOL file</a></li>
+				<li><a>use the content of the downloaded MOL file to make the prediction</a></li>
+		</ul>
+		</p>
+		<p>In the future we will consider other options for chemical drawing.</p>
+	</div>
+  <div id="btn_close_draw" class="dlg_btn"><button autofocus>Close</button></div>
+</dialog>
+</html>
+<script src="js/main_script.js"></script>
+<script type="text/javascript">
+	// Some vars
+	const names_arr = Array("name", "val", "propensity", "system", "chembl_id");
+	const values = data[0];
+	const elem_table_body = document.getElementById("table_data_body");
+	const elem_proc_one = document.getElementById("proc_one");
+	const elem_proc_two = document.getElementById("proc_two");
+	const elem_proc_three = document.getElementById("proc_three");
+	const elem_class_one = document.getElementById("class_one");
+	const elem_class_two = document.getElementById("class_two");
+	const elem_class_three = document.getElementById("class_three");
+	const elem_svg = document.getElementById('container_svg');
+	// Actually populate the table
+	// Add info on applicability
+	elem_proc_one.textContent = data[2][0];
+	elem_proc_two.textContent = data[2][1];
+	elem_proc_three.textContent = data[2][2];
+	elem_class_one.textContent = data[1][0];
+	elem_class_two.textContent = data[1][1];
+	elem_class_three.textContent = data[1][2];
+	elem_svg.innerHTML = data[3].replace(/<rect.*rect>/, "");
+	// Actually populate the table
+	update_table(elem_table_body, values, names_arr);
+</script>
