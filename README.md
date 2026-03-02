@@ -7,6 +7,8 @@ Students, colleagues, supervisers and advisers were involved in the development.
 Current version of the procedure mainly use R language [4] and Tidyverse libraries [5] to process the data.
 
 RDKit.JS [6] is used to process the users's input in the PASS Human Protein Targets (https://way2drug.com/passtargets/).
+Library tableHTML [7] is used to easily convert data.frame to HTML table.
+Library report [8]  is used to generate citations for libraries.
 
 References:
 
@@ -19,3 +21,9 @@ References:
 4. Team, R. Core. "R language definition." Vienna, Austria: R foundation for statistical computing 3.1 (2000): 116.
 
 5. Wickham, Hadley, et al. "Welcome to the Tidyverse." Journal of open source software 4.43 (2019): 1686.
+
+6. https://github.com/rdkit/rdkit-js
+
+7. Boutaris T, Zauchner C, Jomar D (2025). _tableHTML: A Tool to Create HTML Tables_. doi:10.32614/CRAN.package.tableHTML <https://doi.org/10.32614/CRAN.package.tableHTML>, R package version 2.1.3, <https://CRAN.R-project.org/package=tableHTML>.
+
+8. Makowski D, Lüdecke D, Patil I, Thériault R, Ben-Shachar M, Wiernik B (2023). “Automated Results Reporting as a Practical Tool to Improve Reproducibility and Methodological Best Practices Adoption.” _CRAN_. doi:10.32614/CRAN.package.report <https://doi.org/10.32614/CRAN.package.report>, <https://easystats.github.io/report/>.
